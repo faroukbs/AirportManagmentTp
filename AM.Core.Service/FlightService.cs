@@ -1,5 +1,5 @@
 ﻿using AM.Core.Domain;
-using AM.Data;
+using AM.Core.Interface;
 
 namespace AM.Core.Service
 {
