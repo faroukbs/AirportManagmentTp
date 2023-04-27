@@ -21,5 +21,11 @@ namespace AM.Core.Service
         IList<Passenger> GetThreeOlderTravellers(Flight f);
         void ShowGroupedFlights();
         Passenger GetSeniorPassenger(GetScore meth);
+
+        void Add(Flight flight);
+        void Remove(Flight flight);
+        
+
+        IList<Flight> GetAll();
     }
 }

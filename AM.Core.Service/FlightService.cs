@@ -1,10 +1,19 @@
 ﻿using AM.Core.Domain;
+using AM.Data;
 
 namespace AM.Core.Service
 {
     public class FlightService : IFlightService
     {
+        readonly IRepository<Flight> flightRepository;
+       
         public IList<Flight> Flights { get; set; }
+
+        public FlightService(IRepository<Flight> flightRepository)
+        {
+            this.flightRepository = flightRepository;
+
+        }
         public IList<DateTime> GetFlightDates(String Destiation)
         {
         //    List<DateTime> dates = new List<DateTime>(); 
@@ -139,5 +148,21 @@ namespace AM.Core.Service
             return null;
         }
 
+        public void Add(Flight flight)
+        {
+            flightRepository.Add(flight);
+            flightRepository.Commit();
+        }
+
+        public void Remove(Flight flight)
+        {
+            flightRepository.Delete(flight);
+            flightRepository.Commit();
+        }
+
+        public IList<Flight> GetAll()
+        {
+           return flightRepository.GetAll();
+        }
     }
 }
