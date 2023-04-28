@@ -73,16 +73,14 @@ AMContext ctxt= new AMContext(); //permet d'acceder la base
 //    MyPlaneType=PlaneType.Airbus
 //};
 
-//Flight fl = new Flight()
-//{
-//    Destination = "Paris",
-//    Departure = "Tunis",
-//    FlightDate = new DateTime(2022, 1, 1),
-//    EffectiveArrival = new DateTime(2022, 1, 2),
-//    EstimatedDuration = 120,
-//    MyPlane= pl
-
-//};
+Flight fl = new Flight()
+{
+    Destination = "Paris",
+    Departure = "Tunis",
+    FlightDate = new DateTime(2022, 1, 1),
+    EffectiveArrival = new DateTime(2022, 1, 2),
+    EstimatedDuration = 120
+};
 
 //ctxt.Add(fl); //exec du code en mémoire
 //ctxt.Add(pl);
@@ -96,9 +94,28 @@ AMContext ctxt= new AMContext(); //permet d'acceder la base
 //Console.WriteLine(flightFromDB.MyPlane);  
 
 //tp6 quest 6
-Plane plane1 = new Plane() { Capacity = 300, ManufactureDate = new DateTime(2000,1,1), MyPlaneType=PlaneType.Boeing };
-AMContext aMContext = new AMContext();
-IRepository<Plane> repository = new Repository<Plane>(aMContext);
-IPlaneService planeService = new PlaneService(repository);
+//Plane plane1 = new Plane() { Capacity = 300, ManufactureDate = new DateTime(2000, 1, 1), MyPlaneType = PlaneType.Boeing };
+//AMContext aMContext = new AMContext();
 
+
+//IRepository<Plane> repository = new Repository<Plane>(aMContext);
+//IPlaneService planeService = new PlaneService(repository);
+//planeService.Add(plane1);
+
+
+
+//IRepository<Flight> repository1 = new Repository<Flight>(aMContext);
+//IFlightService flightService = new FlightService(repository1);
+
+//flightService.Add(fl);
+
+Plane plane1 = new Plane() { Capacity = 300, ManufactureDate = new DateTime(2000, 1, 1), MyPlaneType = PlaneType.Boeing };
+AMContext aMContext = new AMContext();
+IUnitOfWork unitOfWork = new UnitOfWork(aMContext);
+IPlaneService planeService = new PlaneService(unitOfWork);
 planeService.Add(plane1);
+
+
+IFlightService flightService = new FlightService(unitOfWork);
+
+flightService.Add(fl);

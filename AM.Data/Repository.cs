@@ -23,10 +23,10 @@ namespace AM.Data
         }
 
         //for code optimisation 
-        public void Commit()
-        {
-            context.SaveChanges();
-        }
+        //public void Commit()
+        //{
+        //    context.SaveChanges();
+        //}
 
         public void Delete(T t)
         {

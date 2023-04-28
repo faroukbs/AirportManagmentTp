@@ -15,7 +15,7 @@ namespace AM.Core.Interface
         void Upadate(T t);
         void Delete(T t);
         IList<T> GetAll();
-        void Commit();
+        //void Commit();
 
     }
 }

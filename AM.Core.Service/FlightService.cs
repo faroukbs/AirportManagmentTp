@@ -5,13 +5,15 @@ namespace AM.Core.Service
 {
     public class FlightService : IFlightService
     {
-        readonly IRepository<Flight> flightRepository;
+         IRepository<Flight> flightRepository;
+        readonly IUnitOfWork unitOfWork; 
        
         public IList<Flight> Flights { get; set; }
 
-        public FlightService(IRepository<Flight> flightRepository)
+        public FlightService(IUnitOfWork unitOfWork)
         {
-            this.flightRepository = flightRepository;
+            this.unitOfWork = unitOfWork;
+            flightRepository = unitOfWork.GetRepository<Flight>();
 
         }
         public IList<DateTime> GetFlightDates(String Destiation)
@@ -151,13 +153,13 @@ namespace AM.Core.Service
         public void Add(Flight flight)
         {
             flightRepository.Add(flight);
-            flightRepository.Commit();
+            unitOfWork.Save();
         }
 
         public void Remove(Flight flight)
         {
             flightRepository.Delete(flight);
-            flightRepository.Commit();
+            unitOfWork.Save();
         }
 
         public IList<Flight> GetAll()

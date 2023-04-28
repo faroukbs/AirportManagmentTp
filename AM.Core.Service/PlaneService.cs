@@ -10,24 +10,25 @@ namespace AM.Core.Service
 {
     public class PlaneService : IPlaneService
     {
-        readonly IRepository<Plane> planeRepo;
+       IRepository<Plane> planeRepo;
+        readonly IUnitOfWork unitOfWork; 
 
-
-        public PlaneService(IRepository<Plane> planeRepo)
+        public PlaneService(IUnitOfWork unitOfWork)
         {
-            this.planeRepo = planeRepo;
-
+            
+            this.unitOfWork = unitOfWork;
+            planeRepo = unitOfWork.GetRepository<Plane>();
         }
         public void Add(Plane p)
         {
             planeRepo.Add(p);
-            planeRepo.Commit();
+            unitOfWork.Save();
         }
 
         public void Delete(Plane p)
         {
             planeRepo.Delete(p);
-            planeRepo.Commit();
+            unitOfWork.Save();
         }
 
         public IList<Plane> GetAll()
