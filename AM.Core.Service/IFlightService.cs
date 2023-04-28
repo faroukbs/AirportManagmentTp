@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AM.Core.Service
 {
-    public interface IFlightService
+    public interface IFlightService: IService<Flight>
     {
         //tp2 13-a:
         public delegate int GetScore(Passenger p);
@@ -22,10 +22,10 @@ namespace AM.Core.Service
         void ShowGroupedFlights();
         Passenger GetSeniorPassenger(GetScore meth);
 
-        void Add(Flight flight);
-        void Remove(Flight flight);
+        //void Add(Flight flight);
+        //void Remove(Flight flight);
         
 
-        IList<Flight> GetAll();
+        //IList<Flight> GetAll();
     }
 }

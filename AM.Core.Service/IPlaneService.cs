@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AM.Core.Service
 {
-    public interface IPlaneService
+    public interface IPlaneService : IService<Plane>
     {
-        void Add(Plane p);
-        void Delete(Plane p);
+        //void Add(Plane p);
+        //void Delete(Plane p);
 
-        IList<Plane> GetAll();
+        //IList<Plane> GetAll();
     }
 }

@@ -8,32 +8,32 @@ using System.Threading.Tasks;
 
 namespace AM.Core.Service
 {
-    public class PlaneService : IPlaneService
+    public class PlaneService : Service<Plane>, IPlaneService
     {
-       IRepository<Plane> planeRepo;
-        readonly IUnitOfWork unitOfWork; 
+       //IRepository<Plane> planeRepo;
+       // readonly IUnitOfWork unitOfWork; 
 
-        public PlaneService(IUnitOfWork unitOfWork)
+        public PlaneService(IUnitOfWork unitOfWork):base(unitOfWork) 
         {
             
-            this.unitOfWork = unitOfWork;
-            planeRepo = unitOfWork.GetRepository<Plane>();
+            //this.unitOfWork = unitOfWork;
+            //planeRepo = unitOfWork.GetRepository<Plane>();
         }
-        public void Add(Plane p)
-        {
-            planeRepo.Add(p);
-            unitOfWork.Save();
-        }
+        //public void Add(Plane p)
+        //{
+        //    planeRepo.Add(p);
+        //    unitOfWork.Save();
+        //}
 
-        public void Delete(Plane p)
-        {
-            planeRepo.Delete(p);
-            unitOfWork.Save();
-        }
+        //public void Delete(Plane p)
+        //{
+        //    planeRepo.Delete(p);
+        //    unitOfWork.Save();
+        //}
 
-        public IList<Plane> GetAll()
-        {
-            return planeRepo.GetAll();
-        }
+        //public IList<Plane> GetAll()
+        //{
+        //    return planeRepo.GetAll();
+        //}
     }
 }

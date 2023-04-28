@@ -3,17 +3,17 @@ using AM.Core.Interface;
 
 namespace AM.Core.Service
 {
-    public class FlightService : IFlightService
+    public class FlightService : Service<Flight> ,IFlightService
     {
-         IRepository<Flight> flightRepository;
-        readonly IUnitOfWork unitOfWork; 
+        // IRepository<Flight> flightRepository;
+        //readonly IUnitOfWork unitOfWork; 
        
         public IList<Flight> Flights { get; set; }
 
-        public FlightService(IUnitOfWork unitOfWork)
+        public FlightService(IUnitOfWork unitOfWork) : base(unitOfWork) 
         {
-            this.unitOfWork = unitOfWork;
-            flightRepository = unitOfWork.GetRepository<Flight>();
+            //this.unitOfWork = unitOfWork;
+            //flightRepository = unitOfWork.GetRepository<Flight>();
 
         }
         public IList<DateTime> GetFlightDates(String Destiation)
@@ -150,21 +150,21 @@ namespace AM.Core.Service
             return null;
         }
 
-        public void Add(Flight flight)
-        {
-            flightRepository.Add(flight);
-            unitOfWork.Save();
-        }
+        //public void Add(Flight flight)
+        //{
+        //    flightRepository.Add(flight);
+        //    unitOfWork.Save();
+        //}
 
-        public void Remove(Flight flight)
-        {
-            flightRepository.Delete(flight);
-            unitOfWork.Save();
-        }
+        //public void Remove(Flight flight)
+        //{
+        //    flightRepository.Delete(flight);
+        //    unitOfWork.Save();
+        //}
 
-        public IList<Flight> GetAll()
-        {
-           return flightRepository.GetAll();
-        }
+        //public IList<Flight> GetAll()
+        //{
+        //   return flightRepository.GetAll();
+        //}
     }
 }
