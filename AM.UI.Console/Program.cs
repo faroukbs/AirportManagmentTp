@@ -1,14 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using AM.Core.Domain;
+using AM.Core.Interface;
+using AM.Core.Service;
 using AM.Data;
 
 //Console.WriteLine("Hello, World!");
 ////TP1.Question7
-//Plane plane= new Plane();
-//plane.Capacity = 300;
-//plane.ManufactureDate = new DateTime(2000, 1, 1);
-//plane.MyPlaneType = PlaneType.Boeing;
+Plane plane = new Plane();
+plane.Capacity = 300;
+plane.ManufactureDate = new DateTime(2000, 1, 1);
+plane.MyPlaneType = PlaneType.Boeing;
 ////TP1.Question8
 //Plane plane1 = new Plane(PlaneType.Airbus, 100, new DateTime(2001, 9, 12));
 ////Tp1.Question9
@@ -89,6 +91,14 @@ AMContext ctxt= new AMContext(); //permet d'acceder la base
 //Console.WriteLine(fl.MyPlane);
 
 //tp5 q11
-Flight flightFromDB = (Flight)ctxt.Find(typeof(Flight), 2); //extraire de la bd
-Console.WriteLine(flightFromDB);
-Console.WriteLine(flightFromDB.MyPlane);  
+//Flight flightFromDB = (Flight)ctxt.Find(typeof(Flight), 2); //extraire de la bd
+//Console.WriteLine(flightFromDB);
+//Console.WriteLine(flightFromDB.MyPlane);  
+
+//tp6 quest 6
+Plane plane1 = new Plane() { Capacity = 300, ManufactureDate = new DateTime(2000,1,1), MyPlaneType=PlaneType.Boeing };
+AMContext aMContext = new AMContext();
+IRepository<Plane> repository = new Repository<Plane>(aMContext);
+IPlaneService planeService = new PlaneService(repository);
+
+planeService.Add(plane1);
